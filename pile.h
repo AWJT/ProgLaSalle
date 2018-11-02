@@ -10,7 +10,7 @@
 #define OK_PILE 1
 
 typedef int t_element;
-//
+
 typedef struct 
 {
 	t_element *items;
