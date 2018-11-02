@@ -8,101 +8,79 @@
 #include "pile.h"
 
 
-//procédure pour afficher les éléments du bas au haut d'une pile
-void affiche_pile(const t_pile *p)
-{
-	int i;
-
-	for (i = 0; i < p->nb_elem; i++)
-	{
-		printf("%d ", p->items[i]);
-	}
-}
-
-//fonction pour avoir accès au nombre d'éléments actuel
-int get_nbr_elem(const t_pile *p)
-{
-	int nbr_element;
-
-	nbr_element = p->nb_elem;
-
-	return nbr_element;
-}
-
-//fonction qui interroge une position de la pile
-int seek_pile(const t_pile *p, int pos, t_element *cible)
-{
-	int seek = 0;
-
-	if (pos <= p->nb_elem)
-	{
-		*cible = p->items[pos];
-		seek = 1;
-	}
-
-	return seek;
-}
-
-//fonction destructeur qui met la pile à l'état VIDE
-void detruire_pile(t_pile *p)
-{
-	free(p->items);
-	p->items = NULL;
-	p->nb_elem = 0;
-	p->taille = 0;
-
-}
-
 //procédure pour initializer une pile, la pile sera vide 
 t_pile init_pile(int taille)
 {
 	t_pile new_pile;
 
-	new_pile.items = (t_element*) malloc(taille * sizeof(t_element));
-	
-	new_pile.nb_elem = 0;
-
+	new_pile.items = (t_element*)malloc(taille * sizeof(t_element));
 	new_pile.taille = taille;
+	new_pile.sommet = PILE_VIDE;
 
-	if (new_pile.items==NULL)
-	{
-		new_pile.taille = 0;
+	return new_pile;
+}
+
+//fonction pour afficher le contenu d'une pile d'entier
+void affiche_pile(const t_pile *p)
+{
+	int i;
+
+	for (i = p->sommet; i >= 0; i--)
+		printf("\n%d : %d", i, p->items[i]);
+
+}
+//fonction pour avoir accès au nombre d'éléments actuel
+int get_nbr_elem(const t_pile * p)
+{
+	return p->sommet + 1;
+}
+//fonction qui interroge une position de la pile
+int seek_pile(const t_pile * p, int pos, t_element * cible)
+{
+	if (pos <= PILE_VIDE || pos > p->sommet)
+		return 0;
+
+	*cible = p->items[pos];
+
+	return 1;
+}
+//fonction destructeur qui met la pile à l'état VIDE
+void detruire_pile(t_pile * p) {
+	free(p->items);
+	p->items = NULL;
+	p->taille = 0;
+}
+//procédure pour ajouter un élément de plus sur une pile
+int push(t_pile *p, t_element el)
+{
+	if (pleine(p)) {
+		printf("ERREUR!!! Débordement de pile.");
+		return 0;
 	}
-	
-return new_pile;
+	p->items[++p->sommet] = el;
+	return 1;
 }
 
 //fonction pour vérifier si une pile est pleine
 int  pleine(const t_pile *p)
 {
-	return (p->nb_elem == p->taille);
+	return (p->sommet == p->taille - 1);
 }
 
 //fonction pour vérifier si une pile est vide
 int  vide(const t_pile *p)
 {
-	return (p->nb_elem == 0);
-}
-
-//procédure pour ajouter un élément de plus sur une pile
-void push(t_pile *p, t_element el)
-{
-	if (pleine(p)) {
-		
-	}
-	else {
-		p->items[p->nb_elem] = el;
-		p->nb_elem++;
-	}
+	return (p->sommet == PILE_VIDE);
 }
 
 //procédure pour enlever un élément du haut d'une pile
-void pop(t_pile *p, t_element *el)
+int pop(t_pile *p, t_element *el)
 {
 	if (vide(p)) {
-		
+		printf("ERREUR!!! Pile vide.");
+		return 0;
 	}
-	else {
-		*el = p->items[--p->nb_elem];
-	}
+	//Le sommet  est décrémenté après avoir obtenu l’élément du sommet
+	*el = p->items[p->sommet--];
+	return 1;
 }

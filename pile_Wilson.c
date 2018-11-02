@@ -7,62 +7,61 @@
 /* Définition pour le programme pile.c								    */
 /************************************************************************/
 #include <stdio.h>
-
 #include "pile_Wilson.h"
-//
+
+
 //fonction pour trouver la position d'une valeur
 int get_pos_valeur(const t_pile *pile, t_element valeur)
 {
-	int val = -1;
-	int i = 0;
+	int pos = PILE_VIDE;;
 
-	while ((val == -1) && (i <= pile->taille))  /**/
-	{
-		if (valeur == pile->items[i])   /**/
-		{
-			val = i;
-		}
-		i++;
+	for (pos = 0; pos < get_nbr_elem(pile); pos++) {
+		if (valeur == pile->items[pos])
+			return pos;
 	}
 
-	return val;
+	return pos;
 }
 
 /*********************************************************************************/
-//procédure qui met une pile par-dessus une autre sans perdre l’ordre 
-void concat_piles(t_pile *p_dest,const t_pile *p_src)
-{
-	int sommet_pile_1;
-	int sommet_pile_2;
-	int i;
-	int tampon = 0;
 
-	sommet_pile_1 = get_nbr_elem(p_dest);
-	sommet_pile_2 = get_nbr_elem(p_src);
-	
-	if (p_dest->nb_elem < p_dest->taille)
-	{ 
-		for (i = 0; i < sommet_pile_2; i++)
-		{
-			seek_pile(p_src, i, &tampon);
-			push(p_dest, tampon);
-		}
+//procédure qui met une pile par-dessus une autre sans perdre l’ordre 
+void concat_piles(t_pile *pile_1, const t_pile *pile_2)
+{
+	int i;
+	int espace_libre_pile_1;
+	int nouvelle_taille;
+	t_element tampon;
+
+	espace_libre_pile_1 = get_taille(pile_1) - get_nbr_elem(pile_1);
+
+	if (get_nbr_elem(pile_2) >= espace_libre_pile_1) {
+		nouvelle_taille = get_taille(pile_1) + get_nbr_elem(pile_2);
+		pile_1->items = (t_element *)realloc(pile_1->items, nouvelle_taille
+			* sizeof(t_element));
+		pile_1->taille = nouvelle_taille;
 	}
 
+	for (i = 0; i < get_nbr_elem(pile_2); i++)
+	{
+		seek_pile(pile_2, i, &tampon);
+		push(pile_1, tampon);
+	}
 }
 
 /*****************************************************************************************/
+
 //procédure qui enlève tous les éléments excédentaires au nombre d’éléments d’une pile
 void tronquer_pile(t_pile *pile, int nbr_elem_final)
 {
-	int i;
-	t_element tampon;
+	int nb_elem_retirer;
+	t_element elem_temp;
 
-	i = get_nbr_elem(pile) - nbr_elem_final;
+	nb_elem_retirer = get_nbr_elem(pile) - nbr_elem_final;
 
-	while(i != 0)
-	{
-		pop(pile, &tampon);
-		i--;
+	while (nb_elem_retirer) {
+		pop(pile, &elem_temp);
+		nb_elem_retirer--;
 	}
+
 }
