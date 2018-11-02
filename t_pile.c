@@ -5,7 +5,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include "pile.h"
+#include "t_pile.h"
 
 
 //procédure pour initializer une pile, la pile sera vide 

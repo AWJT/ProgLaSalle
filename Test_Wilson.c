@@ -6,8 +6,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdlib.h>
 #include <stdio.h>
-#include "pile.h"
-#include "pile_Wilson.h"	
+#include "t_pile.h"
+#include "t_pile_Wilson.h"	
 //
 /************************************************************************/
 /*Obtenir la position d'une valeur										*/

@@ -7,7 +7,7 @@
 /* Définition pour le programme pile.c								    */
 /************************************************************************/
 //
-#include "pile.h"
+#include "t_pile.h"
 
 //fonction pour trouver la position d'une valeur
 int get_pos_valeur(const t_pile *pile, t_element valeur);

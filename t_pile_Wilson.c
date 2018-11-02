@@ -7,7 +7,8 @@
 /* Définition pour le programme pile.c								    */
 /************************************************************************/
 #include <stdio.h>
-#include "pile_Wilson.h"
+#include "t_pile_Wilson.h"
+#include "t_pile.h"
 
 
 //fonction pour trouver la position d'une valeur

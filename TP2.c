@@ -15,7 +15,7 @@
 
 #include "mtwister.h"	/*inclure le module externe à la compilation pour
 						  simuler des valeurs aléatoires.*/
-#include "pile.h"
+#include "t_pile.h"
 //
 /************************************************************************/
 /*								COSNTANTES								*/
@@ -56,19 +56,6 @@ void afficher_layrinthe(t_labyrinthe labyrinthe, int m, int n);
 #if(0)
 int main(void)
 {
-	t_element v;
-	t_pile chemins_W;
-	t_pile longueurs_W;
-	int nb_accumul;
-
-	chemins_W = init_pile(NB_LIG * NB_COL);
-	longueurs_W = init_pile(NB_LIG * NB_COL);
-
-	mt_srandSys();
-	v = mt_randi((NB_LIG * NB_COL) - 1);
-	push(&chemins_W, v);
-
-
 
 	t_labyrinthe labyrinthe = { 0 };
 
@@ -78,6 +65,9 @@ int main(void)
 	afficher_tableau(labyrinthe, NB_LIG, NB_COL);
 
 	afficher_layrinthe(labyrinthe, NB_LIG, NB_COL);
+
+
+
 
 	system("pause");
 }
