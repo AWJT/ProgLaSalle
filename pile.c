@@ -103,7 +103,6 @@ void pop(t_pile *p, t_element *el)
 		
 	}
 	else {
-		p->nb_elem--;
-		*el = p->items[p->nb_elem];
+		*el = p->items[--p->nb_elem];
 	}
 }

@@ -15,7 +15,7 @@
 
 #include "mtwister.h"	/*inclure le module externe à la compilation pour
 						  simuler des valeurs aléatoires.*/
-
+//
 /************************************************************************/
 /*								COSNTANTES								*/
 /************************************************************************/

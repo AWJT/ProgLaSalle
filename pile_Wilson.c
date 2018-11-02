@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 #include "pile_Wilson.h"
-
+//
 //fonction pour trouver la position d'une valeur
 int get_pos_valeur(const t_pile *pile, t_element valeur)
 {
