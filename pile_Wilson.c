@@ -59,7 +59,7 @@ void tronquer_pile(t_pile *pile, int nbr_elem_final)
 
 	nb_elem_retirer = get_nbr_elem(pile) - nbr_elem_final;
 
-	while (nb_elem_retirer) {
+	while (nb_elem_retirer > 0) {
 		pop(pile, &elem_temp);
 		nb_elem_retirer--;
 	}

@@ -27,7 +27,7 @@ void test_wilson_2();
 /*Tronquer une pile de plusieurs éléments au premier élément, au dernier*/
 /*et au centre.  Afficher la pile à chaque fois.						*/
 void test_wilson_3();
-
+#if(0)
 int main(void)
 {
 	// Entrez le test souhaité.
@@ -35,7 +35,7 @@ int main(void)
 	test_wilson_2();
 
 }
-
+#endif
 //Test 1: Obtenir la position d'une valeur
 void test_wilson_1()
 {

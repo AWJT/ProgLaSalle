@@ -42,6 +42,8 @@ void affiche_pile(const t_pile *p);
 //fonction pour avoir accès au nombre d'éléments actuel
 int get_nbr_elem(const t_pile *p);
 
+int get_taille(const t_pile *p);
+
 //fonction qui interroge une position de la pile
 int seek_pile(const t_pile *p, int pos, t_element *cible);
 

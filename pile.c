@@ -34,6 +34,11 @@ int get_nbr_elem(const t_pile * p)
 {
 	return p->sommet + 1;
 }
+
+int get_taille(const t_pile *p) {
+	return p->taille;
+}
+
 //fonction qui interroge une position de la pile
 int seek_pile(const t_pile * p, int pos, t_element * cible)
 {
@@ -54,7 +59,7 @@ void detruire_pile(t_pile * p) {
 int push(t_pile *p, t_element el)
 {
 	if (pleine(p)) {
-		printf("ERREUR!!! Débordement de pile.");
+		printf("\nERREUR!!! Débordement de pile.\n");
 		return 0;
 	}
 	p->items[++p->sommet] = el;
@@ -77,7 +82,7 @@ int  vide(const t_pile *p)
 int pop(t_pile *p, t_element *el)
 {
 	if (vide(p)) {
-		printf("ERREUR!!! Pile vide.");
+		printf("\nERREUR!!! Pile vide.\n");
 		return 0;
 	}
 	//Le sommet  est décrémenté après avoir obtenu l’élément du sommet
