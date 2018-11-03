@@ -46,15 +46,22 @@ int ajouter_chemin_Wilson(t_pile * chemins_W, int nb_lig, int nb_col)
 
 t_labyrinthe init_laby(int nb_lig, int nb_col)
 {
-	int i;
+	int i, j;
 	t_labyrinthe laby;
 
 	laby.matrice_laby = (int **)malloc((2 * nb_lig + 1) * sizeof(int *));
 
 	for (i = 0; i < (2 * nb_lig + 1); i++) {
 		laby.matrice_laby[i] = (int *)malloc((2 * nb_col + 1) * sizeof(int));
-
 	}
+
+	//les cases sont toutes initialisées à la valeur MUR
+	for (i = 0; i < (2 * nb_lig + 1); i++) {
+		for (j = 0; j < (2 * nb_col + 1); j++) {
+			laby.matrice_laby[i][j] = MUR;
+		}
+	}
+
 
 	laby.m = nb_lig;
 	laby.n = nb_col;
@@ -87,7 +94,30 @@ void etape_ouverture_chemins(t_labyrinthe * lab, t_pile * chemins_W, t_pile * lo
 
 /***********************************************************************/
 
+/*Cette procédure est utilisée pour faire la porte d’entrée 
+et de sortie autour du labyrinthe.*/
 void creuser_une_porte(t_labyrinthe * lab, int no_contour)
 {
+	//Exemple
+	//pour choisir les valeurs 1(NORD) a 4(EST) au hasard
+	t_direction contour;
+
+	mt_srandSys();
+	
+	contour = mt_randi(OUEST) + 1;
+
+
+}
+void detruire_laby(t_labyrinthe * laby)
+{
+	int i;
+	int taille = 2 * laby->n + 1;
+
+	for (i = 0; i < taille; i++) {
+		free(laby->matrice_laby[i]);
+	}
+	free(laby->matrice_laby);
+	laby->matrice_laby = NULL;
+
 }
 /***********************************************************************/

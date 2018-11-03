@@ -25,14 +25,29 @@
 /************************************************************************/
 /*	              DECLARATIONS DES FONCTIONS PRIVEES                    */
 /************************************************************************/
-
+static int valider_entier(char * msg_sollic, int min, int max);
 
 /************************************************************************/
 /*                         PROGRAMME PRINCIPAL                          */
 /************************************************************************/
 int main(void) {
-	
-
 	system("pause");
 }
 
+int valider_entier(char * msg_sollic, int min, int max) {
+	int entier_valide;
+
+	printf("\n%s\n", msg_sollic);
+
+	do {
+		scanf("%d", &entier_valide);
+
+		if (entier_valide < min || entier_valide > max)
+			printf("Erreur: valeur invalide." 
+				"Entrez une valeur entre [%d..%d]\n", min, max);
+
+	} while (entier_valide < min || entier_valide > max);
+
+	return entier_valide;
+
+}

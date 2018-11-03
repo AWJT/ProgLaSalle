@@ -5,6 +5,18 @@
 /************************************************************************/
 /* Définition pour le programme t_labyrinthe.c						    */
 
+/************************************************************************/
+/*								COSNTANTES								*/
+/************************************************************************/
+#define NB_LIG 4
+#define NB_COL 4
+#define MUR    1
+#define LIBRE  0
+
+//typedef int t_labyrinthe[2 * NB_LIG + 1][2 * NB_COL + 1];
+
+typedef enum { NORD = 1, SUD, OUEST, EST } t_direction;
+
 typedef struct
 {
 	//La matrice du labyrinthe

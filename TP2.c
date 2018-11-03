@@ -34,7 +34,7 @@
 /* Taille: La taille du tableau va constamment varier dépendant du		*/
 /*		   de nombre de colonne et de ligne précédement choisit.		*/
 typedef int t_labyrinthe[2 * NB_LIG + 1][2 * NB_COL + 1];
-typedef enum { NORD=1, SUD=2, OUEST=3, EST=4 } t_direction;
+typedef enum { NORD = 1, SUD, OUEST, EST } t_direction;
 /************************************************************************/
 /*	                 DECLARATIONS DES FONCTIONS                         */
 /************************************************************************/
